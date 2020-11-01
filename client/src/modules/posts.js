@@ -9,6 +9,15 @@ export const getPosts = () => async (dispatch) => {
     console.error(err.message);
   }
 };
+export const createPost = (post) => async (dispatch) => {
+  try {
+    const { data } = await api.createPost(post);
+    dispatch({ type: "CREATE", payload: data });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // Initial States
 const initialState = [];
 
@@ -17,8 +26,8 @@ export const posts = (posts = initialState, action) => {
   switch (action.type) {
     case "FETCH_ALL":
       return action.payload; // 실제 posts가 들어가 있음
-    case "CREATE":
-      return posts;
+    case "CREATE": // 새로운 post 추가
+      return [...posts, action.payload];
     default:
       return posts;
   }

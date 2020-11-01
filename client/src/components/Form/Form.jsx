@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import useStyles from "./styles";
+import { createPost } from "../../modules/posts";
 
 function Form() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -13,7 +16,10 @@ function Form() {
     selectedFile: "",
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createPost(postData));
+  };
   const handleChange = (e) => {
     setPostData({
       ...postData,
@@ -31,11 +37,11 @@ function Form() {
           className={`${classes.root} ${classes.form}`}
           onSubmit={handleSubmit}
         >
-          <Typography variant="h6">Creating a Photagram!</Typography>
+          <Typography variant="h6">게시글 등록</Typography>
           <TextField
             name="creator"
             variant="outlined"
-            label="Creator"
+            label="이름"
             fullWidth
             value={postData.creator}
             onChange={handleChange}
@@ -43,32 +49,32 @@ function Form() {
           <TextField
             name="title"
             variant="outlined"
-            label="Title"
+            label="제목"
             fullWidth
-            value={postData.creator}
+            value={postData.title}
             onChange={handleChange}
           />
           <TextField
             name="message"
             variant="outlined"
-            label="Message"
+            label="메시지"
             fullWidth
-            value={postData.creator}
+            value={postData.message}
             onChange={handleChange}
           />
           <TextField
             name="tags"
             variant="outlined"
-            label="Tags"
+            label="태그"
             fullWidth
-            value={postData.creator}
+            value={postData.tags}
             onChange={handleChange}
           />
           <div className={classes.fileInput}>
             <FileBase
               type="file"
               multiple={false}
-              onDone={(base64) =>
+              onDone={({ base64 }) =>
                 setPostData({ ...postData, selectedFile: base64 })
               }
             />
