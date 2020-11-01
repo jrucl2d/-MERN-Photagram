@@ -12,6 +12,7 @@ export const getPosts = () => async (dispatch) => {
 // Initial States
 const initialState = [];
 
+// useEffect로 console에 찍어보면 두 번 나옴. 처음에 initialState 나오고 다음에 ajax 요청 결과
 export const posts = (posts = initialState, action) => {
   switch (action.type) {
     case "FETCH_ALL":

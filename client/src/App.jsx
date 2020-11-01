@@ -3,7 +3,7 @@ import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
 import { getPosts } from "./modules/posts";
-import picstagram from "./images/picstagram.png";
+import photagram from "./images/photagram.png";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 import useStyles from "./styles";
@@ -20,11 +20,11 @@ function App() {
     <Container maxwitdh="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography className={classes.heading} variant="h2" align="center">
-          Picstagram
+          Photagram
         </Typography>
         <img
           className={classes.image}
-          src={picstagram}
+          src={photagram}
           alt="memories"
           height="60"
           width="60"
