@@ -2,6 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 
 // routes import
 import postRoutes from "./routes/posts.js";
@@ -14,8 +16,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 // mongoDB connection
-const CONNECTION_URL =
-  "mongodb+srv://yuseonggeun:Tjd15753@cluster0.9mkwe.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const CONNECTION_URL = process.env.MONGO_URI;
 mongoose
   .connect(CONNECTION_URL, {
     useNewUrlParser: true,
