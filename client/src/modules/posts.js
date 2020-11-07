@@ -25,6 +25,14 @@ export const updatePost = (id, post) => async (dispatch) => {
     console.error(err);
   }
 };
+export const deletePost = (id) => async (dispatch) => {
+  try {
+    await api.deletePost(id);
+    dispatch({ type: "DELETE", payload: id });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 // Initial States
 const initialState = [];
@@ -40,6 +48,8 @@ export const posts = (posts = initialState, action) => {
       return posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
       );
+    case "DELETE":
+      return posts.filter((post) => post._id !== action.payload);
     default:
       return posts;
   }
