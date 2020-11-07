@@ -33,6 +33,14 @@ export const deletePost = (id) => async (dispatch) => {
     console.error(err);
   }
 };
+export const likePost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.likePost(id);
+    dispatch({ type: "LIKE", payload: data });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 // Initial States
 const initialState = [];
@@ -45,6 +53,7 @@ export const posts = (posts = initialState, action) => {
     case "CREATE": // 새로운 post 추가
       return [...posts, action.payload];
     case "UPDATE":
+    case "LIKE": // like도 같은 작업이 수행됨
       return posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
       );

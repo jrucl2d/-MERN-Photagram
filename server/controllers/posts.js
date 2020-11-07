@@ -41,3 +41,19 @@ export const deletePost = async (req, res, next) => {
   await PostMessage.findByIdAndRemove(id);
   res.json({ message: "게시글이 정상적으로 삭제되었습니다" });
 };
+
+export const likePost = async (req, res, next) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No post with id: ${id}`);
+
+  const post = await PostMessage.findById(id);
+  const updatedPost = await PostMessage.findByIdAndUpdate(
+    id,
+    { likeCount: post.likeCount + 1 },
+    { new: true }
+  );
+
+  res.json(updatedPost);
+};
