@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch]);
+  }, [dispatch, currentID]); // submit을 하는 순간 clear()에서 currentID를 초기화 하기 때문
 
   return (
     <Container maxwitdh="lg">

@@ -38,6 +38,7 @@ function Form({ setCurrentID, currentID }) {
     } else {
       dispatch(createPost(postData));
     }
+    clear();
   };
   const handleChange = (e) => {
     setPostData({
@@ -45,7 +46,16 @@ function Form({ setCurrentID, currentID }) {
       [e.target.name]: e.target.value,
     });
   };
-  const clear = (e) => {};
+  const clear = (e) => {
+    setCurrentID(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
 
   return (
     <div>
@@ -56,7 +66,9 @@ function Form({ setCurrentID, currentID }) {
           className={`${classes.root} ${classes.form}`}
           onSubmit={handleSubmit}
         >
-          <Typography variant="h6">게시글 등록</Typography>
+          <Typography variant="h6">
+            게시글 {currentID ? "수정" : "등록"}
+          </Typography>
           <TextField
             name="creator"
             variant="outlined"
