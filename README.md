@@ -4,12 +4,12 @@
 
 ## Main Page
 
-![MainPage](./image/main1.png)
+![MainPage](./image/main1.PNG)
 
 ## Write Post
 
-![WritePost](./image/main2.png)
-![WritePost](./image/main3.png)
+![WritePost](./image/main2.PNG)
+![WritePost](./image/main3.PNG)
 
 ## Edit Post
 
