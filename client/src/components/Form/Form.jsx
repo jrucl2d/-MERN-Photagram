@@ -119,7 +119,7 @@ function Form({ setCurrentID, currentID }) {
             type="submit"
             fullWidth
           >
-            등록
+            {currentID ? "수정" : "등록"}
           </Button>
           <Button
             variant="contained"
