@@ -47,8 +47,8 @@ function Form({ setCurrentID, currentID }) {
       [e.target.name]: e.target.value,
     });
   };
-  const clear = (e) => {
-    setCurrentID(null);
+  const clear = () => {
+    setCurrentID("");
     setPostData({
       creator: "",
       title: "",

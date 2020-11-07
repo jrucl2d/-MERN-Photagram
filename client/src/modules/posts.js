@@ -54,9 +54,10 @@ export const posts = (posts = initialState, action) => {
       return [...posts, action.payload];
     case "UPDATE":
     case "LIKE": // like도 같은 작업이 수행됨
-      return posts.map((post) =>
+      const returnPost = posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
       );
+      return returnPost;
     case "DELETE":
       return posts.filter((post) => post._id !== action.payload);
     default:
