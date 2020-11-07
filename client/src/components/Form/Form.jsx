@@ -18,6 +18,14 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      postData.creator === "" ||
+      postData.title === "" ||
+      postData.message === ""
+    ) {
+      alert("내용을 입력해주세요.");
+      return;
+    }
     dispatch(createPost(postData));
   };
   const handleChange = (e) => {
