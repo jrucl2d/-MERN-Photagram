@@ -17,6 +17,14 @@ export const createPost = (post) => async (dispatch) => {
     console.error(err);
   }
 };
+export const updatePost = (id, post) => async (dispatch) => {
+  try {
+    const { data } = await api.updatePost(id, post);
+    dispatch({ type: "UPDATE", payload: data });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 // Initial States
 const initialState = [];
@@ -28,6 +36,10 @@ export const posts = (posts = initialState, action) => {
       return action.payload; // 실제 posts가 들어가 있음
     case "CREATE": // 새로운 post 추가
       return [...posts, action.payload];
+    case "UPDATE":
+      return posts.map((post) =>
+        post.id === action.payload._id ? action.payload : post
+      );
     default:
       return posts;
   }

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import useStyles from "./styles";
-import { createPost } from "../../modules/posts";
+import { createPost, updatePost } from "../../modules/posts";
 
-function Form() {
+function Form({ setCurrentID, currentID }) {
+  const post = useSelector(
+    (state) => (currentID ? state.posts.find((p) => p._id === currentID) : null) // currentID를 선택한 경우, 해당 선택된 post만 들고 옴
+  );
   const classes = useStyles();
   const dispatch = useDispatch();
   const [postData, setPostData] = useState({
@@ -15,6 +18,10 @@ function Form() {
     tags: "",
     selectedFile: "",
   });
+
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +33,11 @@ function Form() {
       alert("내용을 입력해주세요.");
       return;
     }
-    dispatch(createPost(postData));
+    if (currentID) {
+      dispatch(updatePost(currentID, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
   };
   const handleChange = (e) => {
     setPostData({
