@@ -20,7 +20,7 @@ function App() {
   return (
     <Container maxwitdh="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h2" align="center">
+        <Typography className={classes.heading} variant="h3" align="center">
           Photagram
         </Typography>
         <img
@@ -34,6 +34,7 @@ function App() {
       <Grow in>
         <Container>
           <Grid
+            className={classes.mainContainer}
             container
             justify="space-between"
             alignItems="stretch"
