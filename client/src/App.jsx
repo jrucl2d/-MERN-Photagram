@@ -11,7 +11,7 @@ import useStyles from "./styles";
 function App() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [currentID, setCurrentID] = useState();
+  const [currentID, setCurrentID] = useState(null);
 
   useEffect(() => {
     dispatch(getPosts());

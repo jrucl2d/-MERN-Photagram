@@ -35,10 +35,11 @@ function Form({ setCurrentID, currentID }) {
     }
     if (currentID) {
       dispatch(updatePost(currentID, postData));
+      clear();
     } else {
       dispatch(createPost(postData));
+      clear();
     }
-    clear();
   };
   const handleChange = (e) => {
     setPostData({
