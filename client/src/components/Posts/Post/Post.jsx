@@ -45,7 +45,10 @@ function Post({ post, setCurrentID }) {
       </div>
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary">
-          {post.tags.map((tag) => `#${tag} `)}
+          {post.tags
+            .toString()
+            .split(",")
+            .map((tag) => `#${tag} `)}
         </Typography>
       </div>
       <Typography className={classes.title} variant="h5" gutterBottom>
@@ -63,7 +66,7 @@ function Post({ post, setCurrentID }) {
           onClick={() => dispatch(likePost(post._id))}
         >
           <ThumbUpAltIcon fontSize="small" />
-          좋아요
+          &nbsp; 좋아요 &nbsp;
           {post.likeCount}
         </Button>
         <Button
@@ -72,7 +75,7 @@ function Post({ post, setCurrentID }) {
           onClick={() => dispatch(deletePost(post._id))}
         >
           <DeleteIcon fontSize="small" />
-          삭제
+          &nbsp; 삭제
         </Button>
       </CardActions>
     </Card>
