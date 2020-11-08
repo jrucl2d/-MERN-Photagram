@@ -28,7 +28,7 @@ mongoose.set("useFindAndModify", false);
 
 // routes
 app.get("/", (req, res, next) => {
-  res.send("Hello Photagram API");
+  res.send("Hello Photagram API!!");
 });
 app.use("/posts", postRoutes);
 
